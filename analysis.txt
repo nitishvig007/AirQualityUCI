@@ -1,0 +1,30 @@
+
+Observation : 
+1. We can't directly apply machine learning models on the current variables as some are in mg/m^3 or, ug/m^3 or, ppb. So scaling has to be done.
+
+2. There are 336 rows that doesn't provide any information. They have irrelevant value (-200) for almost all variables. It can be considered as outliner so we have dropped it
+
+3. The original dataframe has column names with special charachter[ie, ., (,  ) ]. We have replaced it with "_" as it helps us to get 'ols' values to check accuracy.
+
+4. There are 5 (PT08_S1_CO, PT08_S2_NMHC, PT08_S3_NOx, PT08_S4_NO2, PT08_S5_O3)columns that show meter reading so we can drop those and directly work on the pollution values. 
+
+
+Conclusion :
+1. We got the maximum accuracy of 0.92 by using trees with its best parameters with the help of GridSearchCrossValidation.
+
+2. We have used both temperature ("T") and Absolute Humidity ("AH") as target columns and all other variables as input predictors except ("Date", "Time").
+
+3. Using regressor models, we found column ("CO_GT") doesn't contribute much to the output performance, hence we omitted it
+
+4. We used Logisitic Regression on "Time" and got an accuracy of 0.2. It's really poor. Hence we are dropping the idea of treating this dataset as classification model.
+
+5. While using trees, we found 2 columns (CO_GT, NMHC_GT) that have p-value > 0.05, hence we removed them.
+
+
+
+
+
+
+
+
+
